@@ -235,7 +235,7 @@ Details: ${notes || "Not specified"}`;
                 rel="noopener noreferrer"
                 className="w-full py-3 px-6 rounded-full bg-[#25D366] text-white font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
-                <span>Open WhatsApp Chat (9677691237)</span>
+                <span>Open WhatsApp Desk</span>
               </a>
 
               <button

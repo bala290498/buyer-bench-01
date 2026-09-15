@@ -39,7 +39,7 @@ export default function Home() {
         <ContactSection onOpenModal={() => handleOpenModal("Property")} />
       </main>
 
-      <Footer />
+      <Footer onOpenModal={() => handleOpenModal("Property")} />
 
       <ConsultationModal
         isOpen={isModalOpen}

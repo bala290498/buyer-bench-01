@@ -14,9 +14,18 @@ export default function Header({ onOpenModal }: HeaderProps) {
           <span className="underline decoration-[#84976a] decoration-2 underline-offset-4 font-extrabold text-2xl tracking-tight text-[#151614] text-center">
             BuyerBench
           </span>
-          <span className="text-[10px] font-extrabold text-[#686b64] uppercase tracking-[0.38em] text-center w-full mt-1.5 pl-[0.38em]">
-            FOR BUYERS
-          </span>
+          <div className="flex justify-between w-full text-[9px] font-black text-[#686b64] uppercase mt-1 select-none px-0.5">
+            <span>F</span>
+            <span>O</span>
+            <span>R</span>
+            <span>&nbsp;</span>
+            <span>B</span>
+            <span>U</span>
+            <span>Y</span>
+            <span>E</span>
+            <span>R</span>
+            <span>S</span>
+          </div>
         </a>
 
         {/* Desktop nav links */}
