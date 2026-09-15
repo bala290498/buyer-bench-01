@@ -46,8 +46,8 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs transition-opacity duration-200">
-      <div className="relative w-full max-w-lg bg-white dark:bg-[#171916] rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/10 text-[#151614] dark:text-[#f5f5f0] overflow-hidden max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs transition-opacity duration-200">
+      <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/10 text-[#151614] overflow-hidden max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -61,7 +61,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
           <div>
             <div className="mb-6">
               <div className="eyebrow mb-2">BUYERBENCH CONSULTATION</div>
-              <h3 className="text-2xl font-bold tracking-tight text-[#151614] dark:text-[#f5f5f0]">
+              <h3 className="text-2xl font-extrabold tracking-tight text-[#151614]">
                 Talk to an independent buyer guide
               </h3>
               <p className="text-sm text-[#686b64] mt-1">
@@ -81,7 +81,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your name"
-                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a]"
+                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
                 />
               </div>
 
@@ -96,7 +96,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Number"
-                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a]"
+                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
                 />
               </div>
 
@@ -110,23 +110,28 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                     { id: "Plot / flat", label: "Plot / flat" },
                     { id: "Car / bike", label: "Car / bike" },
                     { id: "Construction / interior", label: "Construction / interior" },
-                  ].map((cat) => (
-                    <button
-                      key={cat.id}
-                      type="button"
-                      onClick={() => setSelectedCategory(cat.id)}
-                      className={`p-3 text-center rounded-2xl border transition-all text-xs font-bold cursor-pointer ${
-                        selectedCategory === cat.id ||
-                        (defaultCategory.toLowerCase().includes("property") && cat.id === "Plot / flat") ||
-                        (defaultCategory.toLowerCase().includes("vehicle") && cat.id === "Car / bike") ||
-                        (defaultCategory.toLowerCase().includes("home") && cat.id === "Construction / interior")
-                          ? "border-[#171916] bg-[#dce7c9] text-[#151614] shadow-xs"
-                          : "border-black/10 bg-[#f5f5f0] text-[#686b64] hover:border-black/30"
-                      }`}
-                    >
-                      {cat.label}
-                    </button>
-                  ))}
+                  ].map((cat) => {
+                    const isSelected =
+                      selectedCategory === cat.id ||
+                      (defaultCategory.toLowerCase().includes("property") && cat.id === "Plot / flat") ||
+                      (defaultCategory.toLowerCase().includes("vehicle") && cat.id === "Car / bike") ||
+                      (defaultCategory.toLowerCase().includes("home") && cat.id === "Construction / interior");
+
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => setSelectedCategory(cat.id)}
+                        className={`p-3 text-center rounded-2xl border transition-all text-xs font-bold cursor-pointer ${
+                          isSelected
+                            ? "border-[#151614] bg-[#dce7c9] text-[#151614] shadow-xs"
+                            : "border-black/10 bg-[#f5f5f0] text-[#686b64] hover:border-black/30"
+                        }`}
+                      >
+                        {cat.label}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -141,15 +146,16 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                     { id: "In-person / Call", icon: PhoneCall },
                   ].map((opt) => {
                     const Icon = opt.icon;
+                    const isSelected = meetOption === opt.id;
                     return (
                       <button
                         key={opt.id}
                         type="button"
                         onClick={() => setMeetOption(opt.id)}
-                        className={`flex items-center justify-center gap-2 p-3 rounded-2xl border text-xs font-semibold transition-all cursor-pointer ${
-                          meetOption === opt.id
-                            ? "border-[#171916] bg-[#171916] text-white"
-                            : "border-black/10 bg-[#f5f5f0] text-[#151614]"
+                        className={`flex items-center justify-center gap-2 p-3 rounded-2xl border text-xs font-bold transition-all cursor-pointer ${
+                          isSelected
+                            ? "border-[#151614] bg-[#dce7c9] text-[#151614] shadow-xs"
+                            : "border-black/10 bg-[#f5f5f0] text-[#686b64] hover:border-black/30"
                         }`}
                       >
                         <Icon className="w-4 h-4 text-[#84976a]" />
@@ -170,7 +176,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Budget, locality or model, quotes, contractor names if any"
                   rows={3}
-                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a]"
+                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
                 />
               </div>
 
@@ -178,7 +184,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-full bg-[#171916] text-white font-bold text-sm hover:opacity-95 transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  className="w-full py-3.5 px-6 rounded-full bg-[#151614] text-white font-bold text-sm hover:opacity-95 transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
                   <Send className="w-4 h-4 text-[#dce7c9]" />
                   <span>Send request</span>
@@ -188,7 +194,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
           </div>
         ) : (
           <div className="text-center py-4 space-y-4">
-            <div className="w-14 h-14 bg-[#dce7c9] text-[#171916] rounded-full flex items-center justify-center mx-auto">
+            <div className="w-14 h-14 bg-[#dce7c9] text-[#151614] rounded-full flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h3 className="text-2xl font-extrabold text-[#151614] tracking-tight">
@@ -222,7 +228,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
 
               <button
                 onClick={handleReset}
-                className="w-full py-2.5 px-6 rounded-full bg-[#171916] text-white font-bold text-sm hover:opacity-90 transition-all cursor-pointer"
+                className="w-full py-2.5 px-6 rounded-full bg-[#151614] text-white font-bold text-sm hover:opacity-90 transition-all cursor-pointer"
               >
                 Done & Return to Site
               </button>
