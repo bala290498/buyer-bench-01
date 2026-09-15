@@ -12,11 +12,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
       <div className="hero-grid">
         <div>
           <div className="eyebrow">INDEPENDENT BUYER GUIDANCE</div>
-          <h1>
-            Buying something big?
-            <br />
-            Talk to us first.
-          </h1>
+          <h1>Buying something big?</h1>
           <p className="hero-copy">
             We sit on your side — not the seller's. Bring us your options, and we'll help
             you understand, compare, negotiate and move forward with confidence.
