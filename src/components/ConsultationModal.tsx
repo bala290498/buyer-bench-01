@@ -19,7 +19,7 @@ const resolveInitialCategory = (catStr?: string) => {
 
 export default function ConsultationModal({ isOpen, onClose, defaultCategory = "Plot / flat" }: ModalProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>(() => resolveInitialCategory(defaultCategory));
-  const [meetOption, setMeetOption] = useState<string>("Online second look");
+  const [meetOption, setMeetOption] = useState<string>("Online");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
@@ -152,8 +152,8 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { id: "Online second look", icon: MessageSquare },
-                    { id: "In-person / Call", icon: PhoneCall },
+                    { id: "Online", icon: MessageSquare },
+                    { id: "In-person", icon: PhoneCall },
                   ].map((opt) => {
                     const Icon = opt.icon;
                     const isSelected = meetOption === opt.id;
