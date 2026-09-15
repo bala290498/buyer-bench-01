@@ -7,7 +7,7 @@ export default function WhyUsSection() {
     <section id="why" className="container">
       <div className="section-head">
         <div className="eyebrow">WHY BUYERBENCH</div>
-        <h2>We're not the seller. We're on your side.</h2>
+        <h2>Two things that compound over time</h2>
         <p>Our role is to make the customer's decision clearer — not to make it for them.</p>
       </div>
 
