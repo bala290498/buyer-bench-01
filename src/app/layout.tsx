@@ -41,15 +41,19 @@ export const metadata: Metadata = {
     title: "BuyerBench — Built for Buyers. You Decide. We Guide.",
     description:
       "BuyerBench helps buyers make better decisions on property, vehicles, construction and interiors. Independent guidance built exclusively for buyers.",
-    type: "website",
+    url: "https://buyerbench.com",
+    siteName: "BuyerBench",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
+        type: "image/jpeg",
         alt: "BuyerBench — Built for Buyers. You Decide. We Guide.",
       },
     ],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
