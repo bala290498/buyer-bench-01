@@ -17,22 +17,27 @@ const resolveInitialCategory = (catStr?: string) => {
   return "Plot / flat";
 };
 
-export default function ConsultationModal({ isOpen, onClose, defaultCategory = "Plot / flat" }: ModalProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>(() => resolveInitialCategory(defaultCategory));
-  const [meetOption, setMeetOption] = useState<string>("Online");
+export default function ConsultationModal({ isOpen, onClose }: ModalProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [meetOption, setMeetOption] = useState<string>("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [categoryError, setCategoryError] = useState("");
+  const [meetOptionError, setMeetOptionError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [waLink, setWaLink] = useState("");
 
   useEffect(() => {
     if (isOpen) {
-      setSelectedCategory(resolveInitialCategory(defaultCategory));
+      setSelectedCategory("");
+      setMeetOption("");
       setPhoneError("");
+      setCategoryError("");
+      setMeetOptionError("");
     }
-  }, [isOpen, defaultCategory]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -47,10 +52,30 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    let hasError = false;
+
+    if (!selectedCategory) {
+      setCategoryError("Please select what you need help with.");
+      hasError = true;
+    } else {
+      setCategoryError("");
+    }
+
+    if (!meetOption) {
+      setMeetOptionError("Please select how you would like to meet.");
+      hasError = true;
+    } else {
+      setMeetOptionError("");
+    }
+
     if (phone.length !== 10) {
       setPhoneError("Please enter a valid 10-digit mobile number.");
-      return;
+      hasError = true;
+    } else {
+      setPhoneError("");
     }
+
+    if (hasError) return;
 
     const formattedText = `*BuyerBench Request*
 Name: ${name}
@@ -74,7 +99,11 @@ Details: ${notes}`;
     setName("");
     setPhone("");
     setNotes("");
+    setSelectedCategory("");
+    setMeetOption("");
     setPhoneError("");
+    setCategoryError("");
+    setMeetOptionError("");
     onClose();
   };
 
@@ -158,10 +187,15 @@ Details: ${notes}`;
                       <button
                         key={cat.id}
                         type="button"
-                        onClick={() => setSelectedCategory(cat.id)}
+                        onClick={() => {
+                          setSelectedCategory(cat.id);
+                          setCategoryError("");
+                        }}
                         className={`p-3 text-center rounded-2xl border transition-all text-xs font-bold cursor-pointer ${
                           isSelected
                             ? "border-[#151614] bg-[#dce7c9] text-[#151614] shadow-xs"
+                            : categoryError
+                            ? "border-red-400 bg-[#f5f5f0] text-[#686b64] hover:border-black/30"
                             : "border-black/10 bg-[#f5f5f0] text-[#686b64] hover:border-black/30"
                         }`}
                       >
@@ -170,6 +204,9 @@ Details: ${notes}`;
                     );
                   })}
                 </div>
+                {categoryError && (
+                  <p className="text-xs text-red-500 mt-1.5 font-medium">{categoryError}</p>
+                )}
               </div>
 
               {/* How should we meet */}
@@ -188,10 +225,15 @@ Details: ${notes}`;
                       <button
                         key={opt.id}
                         type="button"
-                        onClick={() => setMeetOption(opt.id)}
+                        onClick={() => {
+                          setMeetOption(opt.id);
+                          setMeetOptionError("");
+                        }}
                         className={`flex items-center justify-center gap-2 p-3 rounded-2xl border text-xs font-bold transition-all cursor-pointer ${
                           isSelected
                             ? "border-[#151614] bg-[#dce7c9] text-[#151614] shadow-xs"
+                            : meetOptionError
+                            ? "border-red-400 bg-[#f5f5f0] text-[#686b64] hover:border-black/30"
                             : "border-black/10 bg-[#f5f5f0] text-[#686b64] hover:border-black/30"
                         }`}
                       >
@@ -201,6 +243,9 @@ Details: ${notes}`;
                     );
                   })}
                 </div>
+                {meetOptionError && (
+                  <p className="text-xs text-red-500 mt-1.5 font-medium">{meetOptionError}</p>
+                )}
               </div>
 
               {/* What do you already have? */}
