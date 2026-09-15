@@ -6,6 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import WhyUsSection from "@/components/WhyUsSection";
+import ProtectionBanner from "@/components/ProtectionBanner";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ConsultationModal from "@/components/ConsultationModal";
@@ -32,6 +33,7 @@ export default function Home() {
         <ServicesSection onOpenModal={(cat) => handleOpenModal(cat)} />
         <HowItWorksSection />
         <WhyUsSection />
+        <ProtectionBanner onOpenModal={(cat) => handleOpenModal(cat)} />
         <ContactSection onOpenModal={() => handleOpenModal("Property")} />
       </main>
 
