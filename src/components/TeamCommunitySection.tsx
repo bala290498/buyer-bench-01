@@ -5,7 +5,8 @@ import { UserCheck, Users, ShieldCheck, Sparkles } from "lucide-react";
 
 export default function TeamCommunitySection() {
   return (
-    <section id="bench" className="container">
+    <section id="team" className="container relative">
+      <div id="bench" className="absolute -top-20" />
       <div className="section-head">
         <div className="eyebrow">OUR BENCH</div>
         <h2>Who we have on our end?</h2>

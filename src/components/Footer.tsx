@@ -63,6 +63,12 @@ export default function Footer({ onOpenModal }: FooterProps) {
                 <a href="#how" className="hover:text-white transition-colors">How It Works</a>
               </li>
               <li>
+                <a href="#things-to-know" className="hover:text-white transition-colors">Things to Know</a>
+              </li>
+              <li>
+                <a href="#team" className="hover:text-white transition-colors">Our Team</a>
+              </li>
+              <li>
                 <a href="#why" className="hover:text-white transition-colors">Why Us</a>
               </li>
             </ul>

@@ -8,6 +8,7 @@ import HowItWorksSection from "@/components/HowItWorksSection";
 import WhyUsSection from "@/components/WhyUsSection";
 import ProtectionBanner from "@/components/ProtectionBanner";
 import TeamCommunitySection from "@/components/TeamCommunitySection";
+import ThingsToKnowSection from "@/components/ThingsToKnowSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ConsultationModal from "@/components/ConsultationModal";
@@ -33,6 +34,7 @@ export default function Home() {
         <HeroSection onOpenModal={() => handleOpenModal("Property")} />
         <ServicesSection onOpenModal={(cat) => handleOpenModal(cat)} />
         <HowItWorksSection />
+        <ThingsToKnowSection />
         <WhyUsSection />
         <ProtectionBanner onOpenModal={(cat) => handleOpenModal(cat)} />
         <TeamCommunitySection />

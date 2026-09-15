@@ -33,9 +33,9 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
         <div className="hero-card">
           <div className="mini-label">YOUR DECISION, MADE CLEARER</div>
           <h3>
-            You choose.
+            You decide.
             <br />
-            We help you choose better.
+            We guide.
           </h3>
           <div className="check">
             <span>✓</span> Compare the options you already have

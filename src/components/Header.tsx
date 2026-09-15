@@ -44,6 +44,8 @@ export default function Header({ onOpenModal }: HeaderProps) {
         <div className="navlinks">
           <a href="#services">Services</a>
           <a href="#how">How it works</a>
+          <a href="#things-to-know">Things to know</a>
+          <a href="#team">Our team</a>
           <a href="#why">Why us</a>
           <button
             onClick={onOpenModal}

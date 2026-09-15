@@ -30,7 +30,10 @@ export const metadata: Metadata = {
     "negotiation guidance",
   ],
   icons: {
-    icon: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
     shortcut: "/favicon.png",
     apple: "/apple-touch-icon.png",
   },
