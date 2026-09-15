@@ -38,11 +38,11 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
     e.preventDefault();
 
     const formattedText = `*BuyerBench Request*
-👤 Name: ${name}
-📱 WhatsApp / Phone: ${phone}
-🏠 Category: ${selectedCategory}
-🤝 Meeting Preference: ${meetOption}
-📋 Details: ${notes || "Not specified"}`;
+Name: ${name}
+WhatsApp / Phone: ${phone}
+Category: ${selectedCategory}
+Meeting Preference: ${meetOption}
+Details: ${notes || "Not specified"}`;
 
     const url = `https://api.whatsapp.com/send?phone=919677691237&text=${encodeURIComponent(formattedText)}`;
     setWaLink(url);
