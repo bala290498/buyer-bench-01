@@ -1,15 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import React from "react";
 
 interface HeaderProps {
   onOpenModal: () => void;
 }
 
 export default function Header({ onOpenModal }: HeaderProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <header className="container relative z-40">
       <nav>
@@ -35,7 +32,7 @@ export default function Header({ onOpenModal }: HeaderProps) {
           </button>
         </div>
 
-        {/* Mobile menu hamburger toggle */}
+        {/* Mobile CTA */}
         <div className="flex items-center gap-3 md:hidden">
           <button
             onClick={onOpenModal}
@@ -43,53 +40,8 @@ export default function Header({ onOpenModal }: HeaderProps) {
           >
             Talk to us
           </button>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-[#151614] hover:bg-[#e7e7df] rounded-lg transition-colors cursor-pointer"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
       </nav>
-
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[#ffffff] border-b border-black/10 p-6 shadow-xl space-y-4 rounded-b-2xl">
-          <a
-            href="#services"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-base font-semibold text-[#444740] hover:text-[#151614]"
-          >
-            Services
-          </a>
-          <a
-            href="#how"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-base font-semibold text-[#444740] hover:text-[#151614]"
-          >
-            How it works
-          </a>
-          <a
-            href="#why"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block text-base font-semibold text-[#444740] hover:text-[#151614]"
-          >
-            Why us
-          </a>
-          <div className="pt-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenModal();
-              }}
-              className="w-full btn-dark py-3 cursor-pointer"
-            >
-              Talk to us
-            </button>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

@@ -210,8 +210,10 @@ Details: ${notes || "Not specified"}`;
             <h3 className="text-2xl font-extrabold text-[#151614] tracking-tight">
               Request Sent to WhatsApp!
             </h3>
-            <p className="text-sm text-[#686b64] max-w-sm mx-auto">
-              Thank you, <span className="font-bold text-[#151614]">{name}</span>. Your response has been forwarded to our WhatsApp number (<span className="font-bold text-[#151614]">9677691237</span>).
+            <p className="text-sm text-[#686b64] max-w-sm mx-auto leading-relaxed">
+              Thank you, <span className="font-bold text-[#151614]">{name}</span>. Your response has been forwarded to our WhatsApp Desk.
+              <br />
+              Team will reach you shortly.
             </p>
 
             <div className="bg-[#f5f5f0] p-4 rounded-2xl text-left border border-black/10 space-y-2">
