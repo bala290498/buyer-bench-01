@@ -13,9 +13,9 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
         <div>
           <div className="eyebrow">INDEPENDENT BUYER GUIDANCE</div>
           <h1>
-            Big purchase.
+            Buying something big?
             <br />
-            Better decision.
+            Talk to us first.
           </h1>
           <p className="hero-copy">
             We sit on your side — not the seller's. Bring us your options, and we'll help
