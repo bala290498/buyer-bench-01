@@ -19,11 +19,8 @@ export default function ProtectionBanner({ onOpenModal }: ProtectionBannerProps)
               INDEPENDENT BUYER PROTECTION
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-              We're not the seller. We're on your side.
-            </h2>
-            <p className="text-base text-[#b7bbb2] mt-2">
               Three places where the decision is complicated — scam or losing money:
-            </p>
+            </h2>
           </div>
 
           {/* Right 3 Cards Grid */}
