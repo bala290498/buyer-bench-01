@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 interface FooterProps {
   onOpenModal?: () => void;
@@ -13,21 +14,32 @@ export default function Footer({ onOpenModal }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12">
           {/* Col 1: Brand & Tagline */}
           <div className="lg:col-span-1 space-y-4">
-            <a className="inline-flex flex-col items-stretch leading-none group w-fit" href="#">
-              <span className="underline decoration-[#84976a] decoration-2 underline-offset-4 font-extrabold text-2xl tracking-tight text-[#f5f5f0]">
-                BuyerBench
-              </span>
-              <div className="flex justify-between w-full text-[9px] font-black text-[#dce7c9] uppercase mt-1 select-none px-0.5">
-                <span>F</span>
-                <span>O</span>
-                <span>R</span>
-                <span>&nbsp;</span>
-                <span>B</span>
-                <span>U</span>
-                <span>Y</span>
-                <span>E</span>
-                <span>R</span>
-                <span>S</span>
+            <a className="flex items-center gap-2.5 leading-none group w-fit" href="#">
+              <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-[#dce7c9] shadow-xs group-hover:scale-105 transition-transform overflow-hidden shrink-0 border border-white/10">
+                <Image
+                  src="/favicon.png"
+                  alt="BuyerBench Icon"
+                  width={36}
+                  height={36}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col items-stretch">
+                <span className="underline decoration-[#84976a] decoration-2 underline-offset-4 font-extrabold text-2xl tracking-tight text-[#f5f5f0]">
+                  BuyerBench
+                </span>
+                <div className="flex justify-between w-full text-[9px] font-black text-[#dce7c9] uppercase mt-1 select-none px-0.5">
+                  <span>F</span>
+                  <span>O</span>
+                  <span>R</span>
+                  <span>&nbsp;</span>
+                  <span>B</span>
+                  <span>U</span>
+                  <span>Y</span>
+                  <span>E</span>
+                  <span>R</span>
+                  <span>S</span>
+                </div>
               </div>
             </a>
             <p className="text-xs text-[#a1a499] leading-relaxed max-w-xs">
