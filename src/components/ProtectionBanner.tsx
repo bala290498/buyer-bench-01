@@ -25,15 +25,15 @@ export default function ProtectionBanner({ onOpenModal }: ProtectionBannerProps)
 
           {/* Right 3 Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full lg:w-auto">
-            {/* 01: Home. Property. Plot / Flat */}
+            {/* 01: Property. Plot / Flat */}
             <div
               onClick={() => onOpenModal && onOpenModal("Property")}
               className="bg-white/5 border border-white/10 p-5 rounded-3xl text-center hover:bg-white/10 hover:border-[#dce7c9]/40 transition-all cursor-pointer group min-w-[170px]"
             >
               <Home className="w-6 h-6 text-[#dce7c9] mx-auto mb-2 group-hover:scale-110 transition-transform" />
-              <div className="text-lg font-extrabold text-white">Home.</div>
-              <div className="text-xs font-bold text-[#dce7c9] mt-0.5">Property.</div>
-              <div className="text-[11px] text-[#b7bbb2] mt-0.5">Plot / Flat</div>
+              <div className="text-lg font-extrabold text-white">Property.</div>
+              <div className="text-xs font-bold text-[#dce7c9] mt-0.5">Plot / Flat</div>
+              <div className="text-[11px] text-transparent mt-0.5">Placeholder</div>
             </div>
 
             {/* 02: Wheels. Car / Bike */}
