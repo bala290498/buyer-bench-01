@@ -19,7 +19,7 @@ export default function ProtectionBanner({ onOpenModal }: ProtectionBannerProps)
               INDEPENDENT BUYER PROTECTION
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-              Three places where the decision is complicated — scam or losing money:
+              One step expert advisory to avoid scam or losing money.
             </h2>
           </div>
 

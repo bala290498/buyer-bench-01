@@ -39,7 +39,7 @@ export default function ServicesSection({ onOpenModal }: ServicesSectionProps) {
     <section id="services" className="container">
       <div className="section-head">
         <div className="eyebrow">WHAT WE HELP WITH</div>
-        <h2>Three places where buying gets complicated.</h2>
+        <h2>Three places where decision gets complicated.</h2>
         <p>Focused on high-value decisions where experience, analysis and human guidance can make a meaningful difference.</p>
       </div>
 
