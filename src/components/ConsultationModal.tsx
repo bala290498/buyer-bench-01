@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { X, CheckCircle2, Send, MessageSquare, PhoneCall, ShieldCheck } from "lucide-react";
 
 interface ModalProps {
@@ -9,14 +9,28 @@ interface ModalProps {
   defaultCategory?: string;
 }
 
+const resolveInitialCategory = (catStr?: string) => {
+  if (!catStr) return "Plot / flat";
+  const lower = catStr.toLowerCase();
+  if (lower.includes("vehicle") || lower.includes("car")) return "Car / bike";
+  if (lower.includes("home") || lower.includes("construction") || lower.includes("interior")) return "Construction / interior";
+  return "Plot / flat";
+};
+
 export default function ConsultationModal({ isOpen, onClose, defaultCategory = "Plot / flat" }: ModalProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>(defaultCategory);
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => resolveInitialCategory(defaultCategory));
   const [meetOption, setMeetOption] = useState<string>("Online second look");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [waLink, setWaLink] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedCategory(resolveInitialCategory(defaultCategory));
+    }
+  }, [isOpen, defaultCategory]);
 
   if (!isOpen) return null;
 
@@ -111,11 +125,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                     { id: "Car / bike", label: "Car / bike" },
                     { id: "Construction / interior", label: "Construction / interior" },
                   ].map((cat) => {
-                    const isSelected =
-                      selectedCategory === cat.id ||
-                      (defaultCategory.toLowerCase().includes("property") && cat.id === "Plot / flat") ||
-                      (defaultCategory.toLowerCase().includes("vehicle") && cat.id === "Car / bike") ||
-                      (defaultCategory.toLowerCase().includes("home") && cat.id === "Construction / interior");
+                    const isSelected = selectedCategory === cat.id;
 
                     return (
                       <button
