@@ -62,7 +62,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
             <div className="mb-6">
               <div className="eyebrow mb-2">BUYERBENCH CONSULTATION</div>
               <h3 className="text-2xl font-extrabold tracking-tight text-[#151614]">
-                Talk to an independent buyer guide
+                Book a sitting.
               </h3>
               <p className="text-sm text-[#686b64] mt-1">
                 Share what you are planning to buy. We will review your shortlisted options, find hidden terms, and guide your next move.
@@ -81,7 +81,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your name"
-                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
+                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
                 />
               </div>
 
@@ -96,7 +96,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Number"
-                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
+                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
                 />
               </div>
 
@@ -176,7 +176,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Budget, locality or model, quotes, contractor names if any"
                   rows={3}
-                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
+                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
                 />
               </div>
 
