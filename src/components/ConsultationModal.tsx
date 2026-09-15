@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, CheckCircle2, ArrowRight, ShieldCheck, MessageSquare, PhoneCall } from "lucide-react";
+import { X, CheckCircle2, Send, MessageSquare, PhoneCall, ShieldCheck } from "lucide-react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -9,19 +9,35 @@ interface ModalProps {
   defaultCategory?: string;
 }
 
-export default function ConsultationModal({ isOpen, onClose, defaultCategory = "Property" }: ModalProps) {
+export default function ConsultationModal({ isOpen, onClose, defaultCategory = "Plot / flat" }: ModalProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>(defaultCategory);
-  const [mode, setMode] = useState<"online" | "offline">("online");
+  const [meetOption, setMeetOption] = useState<string>("Online second look");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [waLink, setWaLink] = useState("");
 
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const formattedText = `*BuyerBench Request*
+👤 Name: ${name}
+📱 WhatsApp / Phone: ${phone}
+🏠 Category: ${selectedCategory}
+🤝 Meeting Preference: ${meetOption}
+📋 Details: ${notes || "Not specified"}`;
+
+    const url = `https://api.whatsapp.com/send?phone=919677691237&text=${encodeURIComponent(formattedText)}`;
+    setWaLink(url);
     setSubmitted(true);
+
+    // Open WhatsApp directly in a new tab
+    if (typeof window !== "undefined") {
+      window.open(url, "_blank");
+    }
   };
 
   const handleReset = () => {
@@ -53,110 +69,109 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Category Selector */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Name */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-1">
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name"
+                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a]"
+                />
+              </div>
+
+              {/* WhatsApp / phone */}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-1">
+                  WhatsApp / phone *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="Number"
+                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a]"
+                />
+              </div>
+
+              {/* I need help with */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-2">
-                  Select Decision Category
+                  I need help with
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    { id: "Property", label: "01 / Property", desc: "Plot or Flat" },
-                    { id: "Vehicles", label: "02 / Vehicles", desc: "Car or Bike" },
-                    { id: "Home", label: "03 / Home", desc: "Construction & Interior" },
+                    { id: "Plot / flat", label: "Plot / flat" },
+                    { id: "Car / bike", label: "Car / bike" },
+                    { id: "Construction / interior", label: "Construction / interior" },
                   ].map((cat) => (
                     <button
                       key={cat.id}
                       type="button"
                       onClick={() => setSelectedCategory(cat.id)}
-                      className={`p-3 text-left rounded-2xl border transition-all text-xs cursor-pointer ${
-                        selectedCategory === cat.id
-                          ? "border-[#171916] bg-[#dce7c9] text-[#151614] font-bold shadow-xs"
+                      className={`p-3 text-center rounded-2xl border transition-all text-xs font-bold cursor-pointer ${
+                        selectedCategory === cat.id ||
+                        (defaultCategory.toLowerCase().includes("property") && cat.id === "Plot / flat") ||
+                        (defaultCategory.toLowerCase().includes("vehicle") && cat.id === "Car / bike") ||
+                        (defaultCategory.toLowerCase().includes("home") && cat.id === "Construction / interior")
+                          ? "border-[#171916] bg-[#dce7c9] text-[#151614] shadow-xs"
                           : "border-black/10 bg-[#f5f5f0] text-[#686b64] hover:border-black/30"
                       }`}
                     >
-                      <div className="font-extrabold">{cat.label}</div>
-                      <div className="text-[11px] opacity-80 mt-0.5">{cat.desc}</div>
+                      {cat.label}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Guidance Mode */}
+              {/* How should we meet */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-2">
-                  Support Preference
+                  How should we meet
                 </label>
                 <div className="grid grid-cols-2 gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setMode("online")}
-                    className={`flex items-center gap-2 p-3 rounded-2xl border text-xs font-medium transition-all cursor-pointer ${
-                      mode === "online"
-                        ? "border-[#171916] bg-[#171916] text-white"
-                        : "border-black/10 bg-[#f5f5f0] text-[#151614]"
-                    }`}
-                  >
-                    <MessageSquare className="w-4 h-4 text-[#84976a]" />
-                    <span>Online Video / Chat</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setMode("offline")}
-                    className={`flex items-center gap-2 p-3 rounded-2xl border text-xs font-medium transition-all cursor-pointer ${
-                      mode === "offline"
-                        ? "border-[#171916] bg-[#171916] text-white"
-                        : "border-black/10 bg-[#f5f5f0] text-[#151614]"
-                    }`}
-                  >
-                    <PhoneCall className="w-4 h-4 text-[#84976a]" />
-                    <span>In-Person / Call</span>
-                  </button>
+                  {[
+                    { id: "Online second look", icon: MessageSquare },
+                    { id: "In-person / Call", icon: PhoneCall },
+                  ].map((opt) => {
+                    const Icon = opt.icon;
+                    return (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        onClick={() => setMeetOption(opt.id)}
+                        className={`flex items-center justify-center gap-2 p-3 rounded-2xl border text-xs font-semibold transition-all cursor-pointer ${
+                          meetOption === opt.id
+                            ? "border-[#171916] bg-[#171916] text-white"
+                            : "border-black/10 bg-[#f5f5f0] text-[#151614]"
+                        }`}
+                      >
+                        <Icon className="w-4 h-4 text-[#84976a]" />
+                        <span>{opt.id}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Shortlisted options / notes */}
+              {/* What do you already have? */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-1">
-                  Options You Have Found (Optional)
+                  What do you already have?
                 </label>
                 <textarea
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="e.g. 3BHK flat in Whitefield, Dealer quotation for EV SUV, or Interior contractor quote..."
+                  placeholder="Budget, locality or model, quotes, contractor names if any"
                   rows={3}
                   className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a]"
                 />
-              </div>
-
-              {/* User Info */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-1">
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Jane Doe"
-                    className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-1">
-                    Email / Phone *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="jane@example.com"
-                    className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a]"
-                  />
-                </div>
               </div>
 
               {/* Submit CTA */}
@@ -165,8 +180,8 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
                   type="submit"
                   className="w-full py-3.5 px-6 rounded-full bg-[#171916] text-white font-bold text-sm hover:opacity-95 transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
-                  <span>Request Independent Guidance</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <Send className="w-4 h-4 text-[#dce7c9]" />
+                  <span>Send request</span>
                 </button>
               </div>
             </form>
@@ -177,31 +192,41 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h3 className="text-2xl font-extrabold text-[#151614] tracking-tight">
-              Guidance Brief Created!
+              Request Sent to WhatsApp!
             </h3>
             <p className="text-sm text-[#686b64] max-w-sm mx-auto">
-              Thank you, <span className="font-bold text-[#151614]">{name}</span>. We have logged your request for{" "}
-              <span className="font-bold text-[#151614]">{selectedCategory}</span> guidance ({mode} support).
+              Thank you, <span className="font-bold text-[#151614]">{name}</span>. Your response has been forwarded to our WhatsApp number (<span className="font-bold text-[#151614]">9677691237</span>).
             </p>
 
             <div className="bg-[#f5f5f0] p-4 rounded-2xl text-left border border-black/10 space-y-2">
               <div className="text-xs font-extrabold tracking-wider uppercase text-[#777a72] flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#84976a]" />
-                What Happens Next:
+                Summary of Your Request:
               </div>
-              <ul className="text-xs text-[#555950] space-y-1.5 list-disc list-inside pl-1">
-                <li>We analyze your options with zero commercial bias.</li>
-                <li>We generate a personalized negotiation & verification checklist.</li>
-                <li>Our expert guide contacts you directly at {email}.</li>
+              <ul className="text-xs text-[#555950] space-y-1 pl-1">
+                <li>• <strong>Category:</strong> {selectedCategory}</li>
+                <li>• <strong>Meeting:</strong> {meetOption}</li>
+                <li>• <strong>Contact:</strong> {phone}</li>
               </ul>
             </div>
 
-            <button
-              onClick={handleReset}
-              className="w-full py-3 px-6 rounded-full bg-[#171916] text-white font-bold text-sm hover:opacity-90 transition-all cursor-pointer"
-            >
-              Done & Return to Site
-            </button>
+            <div className="space-y-2 pt-2">
+              <a
+                href={waLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-6 rounded-full bg-[#25D366] text-white font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
+              >
+                <span>Open WhatsApp Chat (9677691237)</span>
+              </a>
+
+              <button
+                onClick={handleReset}
+                className="w-full py-2.5 px-6 rounded-full bg-[#171916] text-white font-bold text-sm hover:opacity-90 transition-all cursor-pointer"
+              >
+                Done & Return to Site
+              </button>
+            </div>
           </div>
         )}
       </div>
