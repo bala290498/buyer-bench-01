@@ -45,10 +45,10 @@ export const metadata: Metadata = {
     siteName: "BuyerBench",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        type: "image/jpeg",
+        type: "image/png",
         alt: "BuyerBench — Built for Buyers. You Decide. We Guide.",
       },
     ],
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "BuyerBench — Built for Buyers. You Decide. We Guide.",
     description:
       "BuyerBench helps buyers make better decisions on property, vehicles, construction and interiors.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
 };
 
