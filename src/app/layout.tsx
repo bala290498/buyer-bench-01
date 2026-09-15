@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://buyerbench.com"),
+  metadataBase: new URL("https://buyerbench.in"),
   title: "BuyerBench — Built for Buyers. You Decide. We Guide.",
   description:
     "BuyerBench helps buyers make better decisions on property, vehicles, construction and interiors. Independent guidance built exclusively for buyers.",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "BuyerBench — Built for Buyers. You Decide. We Guide.",
     description:
       "BuyerBench helps buyers make better decisions on property, vehicles, construction and interiors. Independent guidance built exclusively for buyers.",
-    url: "https://buyerbench.com",
+    url: "https://buyerbench.in",
     siteName: "BuyerBench",
     images: [
       {

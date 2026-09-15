@@ -77,12 +77,16 @@ export default function ConsultationModal({ isOpen, onClose }: ModalProps) {
 
     if (hasError) return;
 
+    const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://buyerbench.in";
+
     const formattedText = `*BuyerBench Request*
 Name: ${name}
 WhatsApp / Phone: ${phone}
 Category: ${selectedCategory}
 Meeting Preference: ${meetOption}
-Details: ${notes}`;
+Details: ${notes}
+
+${siteUrl}`;
 
     const url = `https://api.whatsapp.com/send?phone=919677691237&text=${encodeURIComponent(formattedText)}`;
     setWaLink(url);
