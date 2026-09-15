@@ -11,7 +11,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
     <section className="hero container">
       <div className="hero-grid">
         <div>
-          <div className="eyebrow">INDEPENDENT BUYER GUIDANCE</div>
+          <div className="eyebrow">PROPERTY. VEHICLES. HOME.</div>
           <h1>Buying something big?</h1>
           <p className="hero-copy">
             We sit on your side — not the seller's. Bring us your options, and we'll help

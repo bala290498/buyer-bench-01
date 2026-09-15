@@ -23,26 +23,41 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [waLink, setWaLink] = useState("");
 
   useEffect(() => {
     if (isOpen) {
       setSelectedCategory(resolveInitialCategory(defaultCategory));
+      setPhoneError("");
     }
   }, [isOpen, defaultCategory]);
 
   if (!isOpen) return null;
 
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 10);
+    setPhone(digitsOnly);
+    if (digitsOnly.length === 10) {
+      setPhoneError("");
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (phone.length !== 10) {
+      setPhoneError("Please enter a valid 10-digit mobile number.");
+      return;
+    }
 
     const formattedText = `*BuyerBench Request*
 Name: ${name}
 WhatsApp / Phone: ${phone}
 Category: ${selectedCategory}
 Meeting Preference: ${meetOption}
-Details: ${notes || "Not specified"}`;
+Details: ${notes}`;
 
     const url = `https://api.whatsapp.com/send?phone=919677691237&text=${encodeURIComponent(formattedText)}`;
     setWaLink(url);
@@ -56,6 +71,10 @@ Details: ${notes || "Not specified"}`;
 
   const handleReset = () => {
     setSubmitted(false);
+    setName("");
+    setPhone("");
+    setNotes("");
+    setPhoneError("");
     onClose();
   };
 
@@ -102,22 +121,30 @@ Details: ${notes || "Not specified"}`;
               {/* WhatsApp / phone */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-1">
-                  WhatsApp / phone *
+                  WhatsApp / phone (10 Digits) *
                 </label>
                 <input
                   type="tel"
                   required
+                  pattern="[0-9]{10}"
+                  maxLength={10}
+                  minLength={10}
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Number"
-                  className="w-full p-3 bg-[#f5f5f0] border border-black/10 rounded-2xl text-[16px] sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#84976a] text-[#151614]"
+                  onChange={handlePhoneChange}
+                  placeholder="10-digit mobile number"
+                  className={`w-full p-3 bg-[#f5f5f0] border rounded-2xl text-[16px] sm:text-sm focus:outline-none focus:ring-2 text-[#151614] ${
+                    phoneError ? "border-red-500 focus:ring-red-500" : "border-black/10 focus:ring-[#84976a]"
+                  }`}
                 />
+                {phoneError && (
+                  <p className="text-xs text-red-500 mt-1 font-medium">{phoneError}</p>
+                )}
               </div>
 
               {/* I need help with */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-2">
-                  I need help with
+                  I need help with *
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
@@ -148,7 +175,7 @@ Details: ${notes || "Not specified"}`;
               {/* How should we meet */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-2">
-                  How should we meet
+                  How should we meet *
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   {[
@@ -179,9 +206,10 @@ Details: ${notes || "Not specified"}`;
               {/* What do you already have? */}
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#686b64] mb-1">
-                  What do you already have?
+                  What do you already have? *
                 </label>
                 <textarea
+                  required
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Budget, locality or model, quotes, contractor names if any"
@@ -233,7 +261,7 @@ Details: ${notes || "Not specified"}`;
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-6 rounded-full bg-[#25D366] text-white font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                className="w-full py-3 px-6 rounded-full bg-[#25D366] text-[#ffffff] font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <span>Open WhatsApp Desk</span>
               </a>
@@ -251,3 +279,4 @@ Details: ${notes || "Not specified"}`;
     </div>
   );
 }
+

@@ -16,6 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://buyerbench.com"),
   title: "BuyerBench — Built for Buyers. You Decide. We Guide.",
   description:
     "BuyerBench helps buyers make better decisions on property, vehicles, construction and interiors. Independent guidance built exclusively for buyers.",
@@ -28,11 +29,31 @@ export const metadata: Metadata = {
     "second opinion for buyers",
     "negotiation guidance",
   ],
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "BuyerBench — Built for Buyers. You Decide. We Guide.",
     description:
       "BuyerBench helps buyers make better decisions on property, vehicles, construction and interiors. Independent guidance built exclusively for buyers.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "BuyerBench — Built for Buyers. You Decide. We Guide.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BuyerBench — Built for Buyers. You Decide. We Guide.",
+    description:
+      "BuyerBench helps buyers make better decisions on property, vehicles, construction and interiors.",
+    images: ["/og-image.jpg"],
   },
 };
 
