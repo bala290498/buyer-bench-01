@@ -76,7 +76,7 @@ export default function ConsultationModal({ isOpen, onClose, defaultCategory = "
             <div className="mb-6">
               <div className="eyebrow mb-2">BUYERBENCH CONSULTATION</div>
               <h3 className="text-2xl font-extrabold tracking-tight text-[#151614]">
-                Book a sitting.
+                One step to validate your decision.
               </h3>
               <p className="text-sm text-[#686b64] mt-1">
                 Share what you are planning to buy. We will review your shortlisted options, find hidden terms, and guide your next move.
