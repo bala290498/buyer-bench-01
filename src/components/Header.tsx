@@ -13,9 +13,11 @@ export default function Header({ onOpenModal }: HeaderProps) {
   return (
     <header className="container relative z-40">
       <nav>
-        <a className="brand inline-flex items-center gap-2.5" href="#">
-          <span className="underline decoration-[#84976a] decoration-2 underline-offset-4">BuyerBench</span>
-          <span className="text-xs font-bold text-[#686b64] bg-[#edf1e6] px-2.5 py-0.5 rounded-full border border-[#84976a]/20">
+        <a className="brand inline-flex flex-col items-center justify-center text-center group leading-none" href="#">
+          <span className="underline decoration-[#84976a] decoration-2 underline-offset-4 font-extrabold text-2xl tracking-tight text-[#151614]">
+            BuyerBench
+          </span>
+          <span className="text-[10px] font-extrabold text-[#686b64] tracking-widest uppercase mt-1">
             for buyers
           </span>
         </a>
