@@ -36,13 +36,13 @@ export default function ProtectionBanner({ onOpenModal }: ProtectionBannerProps)
               <div className="text-[11px] text-transparent mt-0.5">Placeholder</div>
             </div>
 
-            {/* 02: Wheels. Car / Bike */}
+            {/* 02: Vehicles. Car / Bike */}
             <div
               onClick={() => onOpenModal && onOpenModal("Vehicles")}
               className="bg-white/5 border border-white/10 p-5 rounded-3xl text-center hover:bg-white/10 hover:border-[#dce7c9]/40 transition-all cursor-pointer group min-w-[170px]"
             >
               <Car className="w-6 h-6 text-[#dce7c9] mx-auto mb-2 group-hover:scale-110 transition-transform" />
-              <div className="text-lg font-extrabold text-white">Wheels.</div>
+              <div className="text-lg font-extrabold text-white">Vehicles.</div>
               <div className="text-xs font-bold text-[#dce7c9] mt-0.5">Car / Bike</div>
               <div className="text-[11px] text-transparent mt-0.5">Placeholder</div>
             </div>
